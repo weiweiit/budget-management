@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Transaction, TransactionCategory } from './transaction';
+import { Transaction, TransactionCategory } from './models';
 import { Table, TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -10,6 +10,7 @@ import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transaction-list',
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     InputIconModule,
     SliderModule,
     FormsModule,
+    TranslateModule,
   ],
   templateUrl: './transaction-list.component.html',
   styleUrl: './transaction-list.component.scss',
