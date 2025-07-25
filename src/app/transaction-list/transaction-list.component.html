@@ -1,0 +1,151 @@
+<div>
+  <p-table
+    #transactionsTable
+    showGridlines
+    [value]="transactions"
+    [globalFilterFields]="['name', 'amount', 'date', 'type']"
+  >
+    <ng-template #caption>
+      <div class="flex">
+        <p-button
+          label="Reset Filters"
+          [outlined]="true"
+          icon="pi pi-filter-slash"
+          (click)="resetFilters(transactionsTable)"
+        />
+        <p-iconfield iconPosition="left" class="ml-auto">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input
+            [(ngModel)]="globalTableSearchValue"
+            pInputText
+            type="text"
+            (input)="
+              transactionsTable.filterGlobal($event.target.value, 'contains')
+            "
+            placeholder="Search keyword"
+          />
+        </p-iconfield>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th>
+          <div class="flex justify-content-center align-items-center h-full">
+            <span class="mr-1">Name</span>
+            <p-columnFilter
+              type="text"
+              field="name"
+              placeholder="Type to search"
+              matchMode="contains"
+              display="menu"
+              [showMatchModes]="false"
+              [showOperator]="false"
+              [showAddButton]="false"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-center align-items-center h-full">
+            <span class="mr-1">Amount</span>
+            <p-columnFilter
+              field="amount"
+              matchMode="between"
+              display="menu"
+              [showMatchModes]="false"
+              [showOperator]="false"
+              [showAddButton]="false"
+            >
+              <ng-template #filter let-value let-filter="filterCallback">
+                <p-slider
+                  [(ngModel)]="transactionAmountFilterValues"
+                  [range]="true"
+                  class="m-4"
+                  (onSlideEnd)="filter($event.values)"
+                />
+                <div>
+                  <span *ngIf="!transactionAmountFilterValues">0</span>
+                  <span *ngIf="transactionAmountFilterValues"
+                    >{{ transactionAmountFilterValues[0] }} -
+                    {{ transactionAmountFilterValues[1] }}</span
+                  >
+                </div>
+              </ng-template>
+            </p-columnFilter>
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-center align-items-center h-full">
+            <span class="mr-1">Date</span>
+            <p-columnFilter
+              type="date"
+              field="date"
+              display="menu"
+              matchMode="equals"
+              placeholder="Select one"
+              [showMatchModes]="false"
+              [showOperator]="false"
+              [showAddButton]="false"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-center align-items-center h-full">
+            <span class="mr-1">Category</span>
+            <p-columnFilter
+              field="type"
+              matchMode="equals"
+              display="menu"
+              [showMatchModes]="false"
+              [showOperator]="false"
+              [showAddButton]="false"
+            >
+              <ng-template #filter let-value let-filter="filterCallback">
+                <p-select
+                  [options]="transactionCategoryFilterOptions"
+                  placeholder="Select one"
+                  (onChange)="filter($event.value)"
+                >
+                  <ng-template let-option pTemplate="item">
+                    <p-tag
+                      [value]="option"
+                      [severity]="option === 'INCOME' ? 'success' : 'danger'"
+                    />
+                  </ng-template>
+                </p-select>
+              </ng-template>
+            </p-columnFilter>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-transation>
+      <tr>
+        <td>
+          <div class="flex justify-content-center">{{ transation.name }}</div>
+        </td>
+        <td>
+          <div class="flex justify-content-center">
+            {{ transation.amount | currency: "EUR" }}
+          </div>
+        </td>
+        <td>
+          <div class="flex justify-content-center">
+            {{ transation.date | date }}
+          </div>
+        </td>
+        <td>
+          <div class="flex justify-content-center">
+            <p-tag
+              [value]="transation.type"
+              [severity]="transation.type === 'INCOME' ? 'success' : 'danger'"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

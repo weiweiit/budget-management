@@ -50,6 +50,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "^3.6.2",
+    "primeflex": "^4.0.0",
+    "primeicons": "^7.0.0",
     "typescript": "~5.8.2",
     "typescript-eslint": "8.34.1"
   }
