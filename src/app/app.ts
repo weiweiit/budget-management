@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [TransactionListComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
