@@ -1,8 +1,12 @@
 {
-  "components": {
+  "features": {
     "transactionList": {
       "resetFilters": "Réinitialiser les filtres",
       "searchKeyword": "Recherche par mots-clés",
+      "addTransaction": "Ajouter une transaction",
+      "add": "Ajouter",
+      "submit": "Valider",
+      "reset": "Réinitialiser",
       "columns": {
         "titles": {
           "name": "Nom",

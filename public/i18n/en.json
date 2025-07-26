@@ -1,8 +1,12 @@
 {
-  "components": {
+  "features": {
     "transactionList": {
       "resetFilters": "Reset Filters",
       "searchKeyword": "Search keyword",
+      "addTransaction": "Add one transaction",
+      "add": "Add",
+      "submit": "Submit",
+      "reset": "Reset",
       "columns": {
         "titles": {
           "name": "Name",

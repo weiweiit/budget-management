@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Transaction, TransactionCategory } from './models';
+import { Transaction } from './models';
 import { Table, TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { SelectModule } from 'primeng/select';
+import { Select, SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { AddTransactionDialog } from './add-transaction-dialog/add-transaction-dialog';
 
 @Component({
   selector: 'app-transaction-list',
@@ -26,6 +27,8 @@ import { TranslateModule } from '@ngx-translate/core';
     SliderModule,
     FormsModule,
     TranslateModule,
+    AddTransactionDialog,
+    Select,
   ],
   templateUrl: './transaction-list.component.html',
   styleUrl: './transaction-list.component.scss',
@@ -34,8 +37,10 @@ export class TransactionListComponent implements OnInit {
   globalTableSearchValue: string | undefined;
 
   transactionAmountFilterValues: number[] = [0, 10000];
+  transactionAmountFilterMinValue = 0;
+  transactionAmountFilterMaxValue = 10000;
 
-  transactionCategoryFilterOptions: TransactionCategory[] = [];
+  transactionCategoryFilterOptions: string[] = [];
 
   transactions: Transaction[] = [];
 
@@ -43,47 +48,51 @@ export class TransactionListComponent implements OnInit {
     this.transactions = [
       {
         name: 'aaa',
-        amount: 100,
-        date: new Date(2024),
-        type: TransactionCategory.Income,
+        amount: -100,
+        category: 'vida loca',
       },
       {
         name: 'aba',
-        amount: 100,
-        date: new Date(2024),
-        type: TransactionCategory.Income,
+        amount: 1000,
+        category: 'oui oui baguette',
       },
       {
         name: 'abc',
-        amount: 100,
-        date: new Date(2024),
-        type: TransactionCategory.Expense,
+        amount: 2561,
+        category: 'vida loca',
       },
     ];
 
-    this.setDefaultTransactionAmountFilterValues();
-    this.setDefaultTransactionTypeFilterOptions();
+    this.setMinMaxTransactionAmountFilterValues();
+    this.setDefaultTransactionCategoryFilterOptions();
   }
 
   resetFilters(table: Table) {
     table.clear();
-    this.setDefaultTransactionAmountFilterValues();
     this.globalTableSearchValue = '';
   }
 
-  setDefaultTransactionAmountFilterValues() {
-    this.transactionAmountFilterValues = this.transactions.reduce(
-      ([min, max], item) => [
-        Math.min(min, item.amount),
-        Math.max(max, item.amount),
-      ],
-      [Infinity, -Infinity],
+  setMinMaxTransactionAmountFilterValues() {
+    const transactionAmounts = this.transactions.map(
+      (transaction) => transaction.amount,
     );
+    this.transactionAmountFilterMinValue = Math.min(...transactionAmounts);
+    this.transactionAmountFilterMaxValue = Math.max(...transactionAmounts);
+    this.transactionAmountFilterValues = [
+      this.transactionAmountFilterMinValue,
+      this.transactionAmountFilterMaxValue,
+    ];
   }
 
-  setDefaultTransactionTypeFilterOptions() {
+  setDefaultTransactionCategoryFilterOptions() {
     this.transactionCategoryFilterOptions = [
-      ...new Set(this.transactions.map((item) => item.type)),
+      ...new Set(this.transactions.map((item) => item.category)),
     ];
+  }
+
+  addTransaction(transaction: Transaction) {
+    this.transactions.push(transaction);
+    this.setMinMaxTransactionAmountFilterValues();
+    this.setDefaultTransactionCategoryFilterOptions();
   }
 }

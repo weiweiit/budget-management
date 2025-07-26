@@ -6,6 +6,5 @@ export enum TransactionCategory {
 export interface Transaction {
   name: string;
   amount: number;
-  date: Date;
-  type: TransactionCategory;
+  category: string;
 }

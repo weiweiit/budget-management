@@ -1,0 +1,13 @@
+<p-select
+  [options]="transactionCategorySelectorOptions"
+  [placeholder]="transactionCategorySelectorPlaceholder"
+  (onChange)="emitTransactionCategorySelectorValue($event.value)"
+  class="flex"
+>
+  <ng-template let-option pTemplate="item">
+    <p-tag
+      [value]="option"
+      [severity]="option === 'INCOME' ? 'success' : 'danger'"
+    />
+  </ng-template>
+</p-select>

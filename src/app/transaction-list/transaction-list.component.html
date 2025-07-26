@@ -3,12 +3,12 @@
     #transactionsTable
     showGridlines
     [value]="transactions"
-    [globalFilterFields]="['name', 'amount', 'date', 'type']"
+    [globalFilterFields]="['name', 'amount', 'category']"
   >
     <ng-template #caption>
       <div class="flex">
         <p-button
-          label="{{ 'components.transactionList.resetFilters' | translate }}"
+          label="{{ 'features.transactionList.resetFilters' | translate }}"
           [outlined]="true"
           icon="pi pi-filter-slash"
           (click)="resetFilters(transactionsTable)"
@@ -25,9 +25,12 @@
               transactionsTable.filterGlobal($event.target.value, 'contains')
             "
             placeholder="{{
-              'components.transactionList.searchKeyword' | translate
+              'features.transactionList.searchKeyword' | translate
             }}"
           />
+          <app-add-transaction-dialog
+            (AddTransactionDialogEvent)="addTransaction($event)"
+          ></app-add-transaction-dialog>
         </p-iconfield>
       </div>
     </ng-template>
@@ -37,13 +40,13 @@
         <th>
           <div class="flex justify-content-center align-items-center h-full">
             <span class="mr-1">{{
-              "components.transactionList.columns.titles.name" | translate
+              "features.transactionList.columns.titles.name" | translate
             }}</span>
             <p-columnFilter
               type="text"
               field="name"
               placeholder="{{
-                'components.transactionList.columns.filters.typeToSearch'
+                'features.transactionList.columns.filters.typeToSearch'
                   | translate
               }}"
               matchMode="contains"
@@ -57,7 +60,7 @@
         <th>
           <div class="flex justify-content-center align-items-center h-full">
             <span class="mr-1">{{
-              "components.transactionList.columns.titles.amount" | translate
+              "features.transactionList.columns.titles.amount" | translate
             }}</span>
             <p-columnFilter
               field="amount"
@@ -70,6 +73,8 @@
               <ng-template #filter let-value let-filter="filterCallback">
                 <p-slider
                   [(ngModel)]="transactionAmountFilterValues"
+                  [min]="transactionAmountFilterMinValue"
+                  [max]="transactionAmountFilterMaxValue"
                   [range]="true"
                   class="m-4"
                   (onSlideEnd)="filter($event.values)"
@@ -88,52 +93,25 @@
         <th>
           <div class="flex justify-content-center align-items-center h-full">
             <span class="mr-1">{{
-              "components.transactionList.columns.titles.date" | translate
+              "features.transactionList.columns.titles.category" | translate
             }}</span>
             <p-columnFilter
-              type="date"
-              field="date"
-              display="menu"
-              matchMode="equals"
-              placeholder="{{
-                'components.transactionList.columns.filters.selectOne'
-                  | translate
-              }}"
-              [showMatchModes]="false"
-              [showOperator]="false"
-              [showAddButton]="false"
-            ></p-columnFilter>
-          </div>
-        </th>
-        <th>
-          <div class="flex justify-content-center align-items-center h-full">
-            <span class="mr-1">{{
-              "components.transactionList.columns.titles.category" | translate
-            }}</span>
-            <p-columnFilter
-              field="type"
+              field="category"
               matchMode="equals"
               display="menu"
               [showMatchModes]="false"
               [showOperator]="false"
               [showAddButton]="false"
             >
-              <ng-template #filter let-value let-filter="filterCallback">
+              <ng-template #filter let-filter="filterCallback">
                 <p-select
                   [options]="transactionCategoryFilterOptions"
-                  placeholder="{{
-                    'components.transactionList.columns.filters.selectOne'
+                  [placeholder]="
+                    'features.transactionList.columns.filters.selectOne'
                       | translate
-                  }}"
+                  "
                   (onChange)="filter($event.value)"
-                >
-                  <ng-template let-option pTemplate="item">
-                    <p-tag
-                      [value]="option"
-                      [severity]="option === 'INCOME' ? 'success' : 'danger'"
-                    />
-                  </ng-template>
-                </p-select>
+                ></p-select>
               </ng-template>
             </p-columnFilter>
           </div>
@@ -153,15 +131,7 @@
         </td>
         <td>
           <div class="flex justify-content-center">
-            {{ transation.date | date }}
-          </div>
-        </td>
-        <td>
-          <div class="flex justify-content-center">
-            <p-tag
-              [value]="transation.type"
-              [severity]="transation.type === 'INCOME' ? 'success' : 'danger'"
-            />
+            {{ transation.category }}
           </div>
         </td>
       </tr>
