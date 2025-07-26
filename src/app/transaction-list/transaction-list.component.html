@@ -8,7 +8,7 @@
     <ng-template #caption>
       <div class="flex">
         <p-button
-          label="Reset Filters"
+          label="{{ 'components.transactionList.resetFilters' | translate }}"
           [outlined]="true"
           icon="pi pi-filter-slash"
           (click)="resetFilters(transactionsTable)"
@@ -24,7 +24,9 @@
             (input)="
               transactionsTable.filterGlobal($event.target.value, 'contains')
             "
-            placeholder="Search keyword"
+            placeholder="{{
+              'components.transactionList.searchKeyword' | translate
+            }}"
           />
         </p-iconfield>
       </div>
@@ -34,11 +36,16 @@
       <tr>
         <th>
           <div class="flex justify-content-center align-items-center h-full">
-            <span class="mr-1">Name</span>
+            <span class="mr-1">{{
+              "components.transactionList.columns.titles.name" | translate
+            }}</span>
             <p-columnFilter
               type="text"
               field="name"
-              placeholder="Type to search"
+              placeholder="{{
+                'components.transactionList.columns.filters.typeToSearch'
+                  | translate
+              }}"
               matchMode="contains"
               display="menu"
               [showMatchModes]="false"
@@ -49,7 +56,9 @@
         </th>
         <th>
           <div class="flex justify-content-center align-items-center h-full">
-            <span class="mr-1">Amount</span>
+            <span class="mr-1">{{
+              "components.transactionList.columns.titles.amount" | translate
+            }}</span>
             <p-columnFilter
               field="amount"
               matchMode="between"
@@ -78,13 +87,18 @@
         </th>
         <th>
           <div class="flex justify-content-center align-items-center h-full">
-            <span class="mr-1">Date</span>
+            <span class="mr-1">{{
+              "components.transactionList.columns.titles.date" | translate
+            }}</span>
             <p-columnFilter
               type="date"
               field="date"
               display="menu"
               matchMode="equals"
-              placeholder="Select one"
+              placeholder="{{
+                'components.transactionList.columns.filters.selectOne'
+                  | translate
+              }}"
               [showMatchModes]="false"
               [showOperator]="false"
               [showAddButton]="false"
@@ -93,7 +107,9 @@
         </th>
         <th>
           <div class="flex justify-content-center align-items-center h-full">
-            <span class="mr-1">Category</span>
+            <span class="mr-1">{{
+              "components.transactionList.columns.titles.category" | translate
+            }}</span>
             <p-columnFilter
               field="type"
               matchMode="equals"
@@ -105,7 +121,10 @@
               <ng-template #filter let-value let-filter="filterCallback">
                 <p-select
                   [options]="transactionCategoryFilterOptions"
-                  placeholder="Select one"
+                  placeholder="{{
+                    'components.transactionList.columns.filters.selectOne'
+                      | translate
+                  }}"
                   (onChange)="filter($event.value)"
                 >
                   <ng-template let-option pTemplate="item">

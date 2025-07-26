@@ -1,0 +1,34 @@
+<div class="flex flex-row-reverse mb-3">
+  <p-select
+    [options]="languages"
+    [(ngModel)]="selectedLanguage"
+    optionLabel="name"
+    (onChange)="changeLanguage()"
+  >
+    <ng-template #selectedItem let-selectedOption>
+      <div class="flex align-items-center gap-2">
+        <img
+          [src]="'images/flags/' + selectedOption.code + '.png'"
+          [alt]="selectedOption.name"
+          width="16"
+          height="12"
+        />
+        <div>{{ selectedOption.name }}</div>
+      </div>
+    </ng-template>
+    <ng-template #item let-language>
+      <div class="flex align-items-center gap-2">
+        <img
+          [src]="'images/flags/' + language.code + '.png'"
+          [alt]="language.name"
+          width="16"
+          height="12"
+        />
+        <div>{{ language.name }}</div>
+      </div>
+    </ng-template>
+    <ng-template #dropdownicon>
+      <i class="pi pi-language"></i>
+    </ng-template>
+  </p-select>
+</div>

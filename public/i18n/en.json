@@ -1,0 +1,20 @@
+{
+  "components": {
+    "transactionList": {
+      "resetFilters": "Reset Filters",
+      "searchKeyword": "Search keyword",
+      "columns": {
+        "titles": {
+          "name": "Name",
+          "date": "Date",
+          "amount": "Amount",
+          "category": "Category"
+        },
+        "filters": {
+          "typeToSearch": "Type to search",
+          "selectOne": "Select one"
+        }
+      }
+    }
+  }
+}
