@@ -1,0 +1,57 @@
+[33mcommit 409ae7e1c3f4f798d0555f43790136391e93cfa5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m)[m
+Author: weiweiit <tweissem@gmail.com>
+Date:   Sat Jul 26 18:30:56 2025 +0200
+
+    add transaction dialog component
+    
+    adding transaction category selector
+    
+    removing dates, amount slider filter correction
+    
+    adding transaction reactive form
+    
+    add transaction
+
+[33mcommit 64e5ed863a5121279ce77d3077686a7d64c1e598[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 203228b 1e20be7
+Author: weiweiit <168650310+weiweiit@users.noreply.github.com>
+Date:   Sat Jul 26 14:36:09 2025 +0200
+
+    Merge pull request #2 from weiweiit/develop
+    
+    adding i18n/internationalization
+
+[33mcommit 1e20be79fdc446c4e4646bd6a635294c6b2c18b2[m
+Author: weiweiit <tweissem@gmail.com>
+Date:   Fri Jul 25 19:24:50 2025 +0200
+
+    adding i18n/internationalization using ngx-translate/core
+    
+    language selector ending (positionning, flags, etc)
+
+[33mcommit 203228b5934eea809cfa37d91a8968ac4df57916[m
+Merge: b968079 cb72123
+Author: weiweiit <168650310+weiweiit@users.noreply.github.com>
+Date:   Fri Jul 25 16:32:19 2025 +0200
+
+    Merge pull request #1 from weiweiit/develop
+    
+    adding transaction-list component
+
+[33mcommit cb721236b43c26b8879e17f88b50ca629014a063[m
+Author: weiweiit <tweissem@gmail.com>
+Date:   Fri Jul 25 16:31:18 2025 +0200
+
+    adding transaction-list component
+
+[33mcommit b96807945a0b0ed489ff24177f80d95cc565d140[m
+Author: weiweiit <tweissem@gmail.com>
+Date:   Thu Jul 24 12:26:40 2025 +0200
+
+    project configuration : eslint, prettier, primeng
+
+[33mcommit 8075c16a771eaf5678d3128195f12f99d25a5f86[m
+Author: weiweiit <tweissem@gmail.com>
+Date:   Thu Jul 24 12:11:46 2025 +0200
+
+    initial commit
