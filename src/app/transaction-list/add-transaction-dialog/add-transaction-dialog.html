@@ -1,0 +1,73 @@
+<p-button
+  (click)="showForm()"
+  label="{{ 'features.transactionList.add' | translate }}"
+  variant="outlined"
+/>
+<p-dialog
+  header="{{ 'features.transactionList.addTransaction' | translate }}"
+  [modal]="true"
+  [(visible)]="isVisible"
+  [style]="{ width: '30rem' }"
+>
+  <div class="card flex">
+    <form [formGroup]="addTransactionForm" (ngSubmit)="onSubmit()">
+      <p-floatlabel variant="on">
+        <label for="name">{{
+          "features.transactionList.columns.titles.name" | translate
+        }}</label>
+        <input
+          pInputText
+          type="text"
+          id="name"
+          formControlName="name"
+          [invalid]="isInvalid('name')"
+          class="flex-grow-1 pl-3"
+        />
+      </p-floatlabel>
+
+      <p-floatlabel variant="on" class="mt-3 mb-1">
+        <p-inputnumber
+          inputId="amount"
+          mode="currency"
+          currency="EUR"
+          locale="fr-FR"
+          formControlName="amount"
+          [invalid]="isInvalid('amount')"
+          class="flex-grow-1"
+        />
+        <label for="amount">{{
+          "features.transactionList.columns.titles.amount" | translate
+        }}</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on" class="mt-3 mb-1">
+        <label for="category">{{
+          "features.transactionList.columns.titles.category" | translate
+        }}</label>
+        <input
+          pInputText
+          type="text"
+          id="category"
+          formControlName="category"
+          [invalid]="isInvalid('category')"
+          class="flex-grow-1 pl-3"
+        />
+      </p-floatlabel>
+
+      <div class="flex h-full mt-5 gap-2">
+        <p-button
+          label="{{ 'features.transactionList.submit' | translate }}"
+          severity="primary"
+          variant="outlined"
+          type="submit"
+        />
+        <p-button
+          label="{{ 'features.transactionList.reset' | translate }}"
+          severity="secondary"
+          variant="outlined"
+          (click)="resetForm()"
+        />
+      </div>
+    </form>
+  </div>
+</p-dialog>
