@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Transaction } from './models';
+import { Transaction, TransactionTableColumn } from './models';
 import { Table, TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -43,6 +43,12 @@ export class TransactionListComponent implements OnInit {
   transactionCategoryFilterOptions: string[] = [];
 
   transactions: Transaction[] = [];
+
+  transactionTableColumns: TransactionTableColumn[] = [
+    { field: 'name', header: 'Name' },
+    { field: 'amount', header: 'Amount' },
+    { field: 'category', header: 'Category' },
+  ];
 
   ngOnInit() {
     this.transactions = [

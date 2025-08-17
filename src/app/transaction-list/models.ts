@@ -8,3 +8,8 @@ export interface Transaction {
   amount: number;
   category: string;
 }
+
+export interface TransactionTableColumn {
+  field: string;
+  header: string;
+}
