@@ -36,7 +36,23 @@
           (AddTransactionDialogEvent)="addTransaction($event)"
         ></app-add-transaction-dialog>
 
-        <p-button label="Export" (click)="transactionsTable.exportCSV()" />
+        <p-button
+          label="{{ 'features.transactionList.export' | translate }}"
+          [outlined]="true"
+          icon="pi pi-file-export"
+          (click)="exportCustomCSV()"
+        />
+
+        <p-fileupload
+          name="demo[]"
+          url="https://www.primefaces.org/cdn/api/upload.php"
+          (onUpload)="onUpload($event)"
+          accept=".csv"
+          maxFileSize="1000000"
+          mode="basic"
+          [auto]="true"
+        >
+        </p-fileupload>
       </div>
     </ng-template>
 

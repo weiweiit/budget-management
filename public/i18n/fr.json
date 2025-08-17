@@ -7,6 +7,7 @@
       "add": "Ajouter",
       "submit": "Valider",
       "reset": "Réinitialiser",
+      "export": "Exporter",
       "columns": {
         "titles": {
           "name": "Nom",
